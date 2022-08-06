@@ -2,13 +2,21 @@ const {app, BrowserWindow} = require('electron')
     const url = require("url");
     const path = require("path");
 
+    // require('electron-reload')(__dirname, {
+    //     electron: require(`${__dirname}/node_modules/electron`)
+    // });
+
     let mainWindow
 
     function createWindow () {
       mainWindow = new BrowserWindow({
         width: 450,
         height: 800,
-        titleBarStyle: "hidden",
+        // titleBarStyle: "hiddenInset",
+        trafficLightPosition: { x: 16, y: 16 },
+        titleBarOverlay: {
+          height: 60
+        },
         webPreferences: {
           nodeIntegration: true
         }
