@@ -10,7 +10,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
   declarations: [
     AppComponent,
     TaskComponent,
-    CheckboxComponent
+    CheckboxComponent,
   ],
   imports: [
     BrowserModule,

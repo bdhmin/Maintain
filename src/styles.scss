@@ -1,8 +1,8 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css");
 
-$dark: #242C28;
-$mid: #646A67;
-$light: #D9DCDB;
+$dark: #242C28 !global;
+$mid: #646A67 !global;
+$light: #D9DCDB !global;
 
 html,body {
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
@@ -12,5 +12,4 @@ h1 {
   font-weight: 300;
   font-size: 20;
   color: $dark;
-
 }

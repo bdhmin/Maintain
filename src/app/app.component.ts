@@ -8,5 +8,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Maintain';
 
+  todolist: string[] = [
+    'Two Leetcode Problems',
+    'Continue Maintain App Development',
+    'CSE 197 Daily Reflection',
+  ]
+
   today: Date = new Date();
 }
