@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "maint-6af99": {
+      "hosting": {
+        "Maintain": [
+          "maint-6af99"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "maint-6af99"
+  }
+}
