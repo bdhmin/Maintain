@@ -3,7 +3,7 @@ import { CollectionReference, DocumentData, collection, deleteDoc, doc, updateDo
 import { Firestore, collectionData, docData, setDoc, Timestamp, query, where } from '@angular/fire/firestore';
 
 import { Injectable } from "@angular/core";
-import { combineLatest, Observable, switchMap, withLatestFrom } from 'rxjs';
+import { combineLatest, map, Observable, switchMap, withLatestFrom } from 'rxjs';
 import { Task } from './task.model';
 
 @Injectable({
@@ -37,7 +37,7 @@ export class TaskService {
     const oldTasks$ = collectionData(oldTasksQuery);
     const todayTasks$ = collectionData(todayTasksQuery);
     return combineLatest([oldTasks$, todayTasks$]).pipe(
-      switchMap(([oldTasksData, todayTasksData]) => {
+      map(([oldTasksData, todayTasksData]) => {
         return [...new Set([...oldTasksData, ...todayTasksData])];
       })
     ) as Observable<Task[]>;

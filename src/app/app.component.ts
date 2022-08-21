@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Firestore, Timestamp } from '@angular/fire/firestore';
 import { Task } from 'src/app/entities/task/task.model';
 import { TaskService } from './entities/task/task.service';
 import { collection, addDoc } from "firebase/firestore"; 
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Maintain';
+
+  taskList$: Observable<Task[]> = this.taskService.getTasksOfToday();
 
   todolist: Task[] = [
     {
@@ -57,6 +60,13 @@ export class AppComponent {
     private taskService: TaskService,
     private db: Firestore,
   ) { }
+
+  ngOnInit() {
+    console.log('hello app!')
+    this.taskList$.subscribe((data) => {
+      console.log('fetched', data);
+    })
+  }
 
   addTask() {
     console.log('Creating task')
