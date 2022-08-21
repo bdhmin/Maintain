@@ -8,7 +8,7 @@ import { Task } from 'src/app/entities/task/task.model';
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
-  
+
   @Input() task: Task = {
     __id: '',
     _createdAt: Timestamp.now(),

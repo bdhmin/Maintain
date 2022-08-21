@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Firestore, Timestamp } from '@angular/fire/firestore';
+import { Firestore, doc, onSnapshot, Timestamp } from '@angular/fire/firestore';
 import { Task } from 'src/app/entities/task/task.model';
 import { TaskService } from './entities/task/task.service';
 import { collection, addDoc } from "firebase/firestore"; 
@@ -58,11 +58,12 @@ export class AppComponent implements OnInit {
 
   constructor(
     private taskService: TaskService,
-    private db: Firestore,
+    private firestore: Firestore,
   ) { }
 
   ngOnInit() {
     console.log('hello app!')
+
     this.taskList$.subscribe((data) => {
       console.log('fetched', data);
     })
@@ -78,22 +79,11 @@ export class AppComponent implements OnInit {
       completed: false,
       completedAt: null,
     }
-    const startOfDay = new Date()
-    startOfDay.setHours(0, 0, 0, 0);
-    const endOfDay = new Date()
-    endOfDay.setHours(24, 0, 0, 0);
-    console.log(startOfDay, endOfDay);
 
-    // this.taskService.create(task);
+    this.taskService.create(task);
+    // TODO: Can I refetch within the service instead of manually calling?
+    this.taskList$ = this.taskService.getTasksOfToday();
 
-    // try {
-    //   const docRef = addDoc(collection(this.db, "tasks"), task);
-    //   docRef.then((d) => {
-    //     console.log('added data', d.id)
-    //   });
-    // } catch (e) {
-    //   console.error("Error adding document: ", e);
-    // }
   }
 
 }

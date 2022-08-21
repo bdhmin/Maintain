@@ -1,6 +1,6 @@
 
 import { CollectionReference, DocumentData, collection, deleteDoc, doc, updateDoc } from '@firebase/firestore';
-import { Firestore, collectionData, docData, setDoc, Timestamp, query, where } from '@angular/fire/firestore';
+import { Firestore, collectionData, docData, setDoc, Timestamp, query, where, onSnapshot, onSnapshotsInSync } from '@angular/fire/firestore';
 
 import { Injectable } from "@angular/core";
 import { combineLatest, map, Observable, switchMap, withLatestFrom } from 'rxjs';
@@ -53,6 +53,7 @@ export class TaskService {
     task.__id = tasksDocumentReference.id;
     task._createdAt = Timestamp.now();
     task._updatedAt = Timestamp.now();
+    task.description = '';
     return setDoc(tasksDocumentReference, task);
   }
 
