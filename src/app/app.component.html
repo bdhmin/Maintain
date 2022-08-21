@@ -1,5 +1,8 @@
 <div role="main" class="main">
   <h1>{{today | date: "fullDate"}}</h1>
-  <app-task *ngFor="let task of todolist" [task]="task"></app-task>
+  <div class="add-task" (click)="addTask()">Add Task</div>
+  <div class="tasklist">
+    <app-task *ngFor="let task of todolist" [task]="task"></app-task>
+  </div>
 </div>
 <router-outlet></router-outlet>

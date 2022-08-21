@@ -1,3 +1,11 @@
 .main {
-  border: 1px black solid;
+  .add-task {
+    color: #D9DCDB;
+    font-size: 17px;
+  }
+  .tasklist {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
 }

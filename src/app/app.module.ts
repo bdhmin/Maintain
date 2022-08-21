@@ -11,7 +11,16 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { Routes } from '@angular/router';
 
+const routes: Routes = [
+  {
+    path: '',
+    loadChildren: () => 
+      import('./features/task/task.module').then((m) => m.TaskModule),
+      // import('./features/habit/habit.module').then((m) => m.HabitModule);
+  },
+];
 @NgModule({
   declarations: [
     AppComponent,
