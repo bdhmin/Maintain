@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('hello app!')
+    console.log('Maintain your productivity levels. Stay focused and stay positive.')
 
     // this.taskList$.subscribe((data) => {
     //   console.log('fetched', data);
