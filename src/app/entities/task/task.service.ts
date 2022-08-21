@@ -23,24 +23,25 @@ export class TaskService {
   }
 
   getTasksOfToday(): Observable<Task[]> {
-    const oldTasksQuery = query(this.taskCollection, 
-      where('_createdAt', '<=', Timestamp.now()), 
+
+    const oldTasksQuery = query(this.taskCollection,
+      where('_createdAt', '<=', Timestamp.now()),
       where('completed', '==', false)
     );
     const startOfDay = Timestamp.fromMillis(new Date().setHours(0, 0, 0, 0));
     const endOfDay = Timestamp.fromMillis(new Date().setHours(24, 0, 0, 0));
-    const todayTasksQuery = query(this.taskCollection, 
-      where('_createdAt', '>=', startOfDay), 
-      where('_createdAt', '<=', endOfDay), 
-      where('completed', '==', true)
-    );
-    const oldTasks$ = collectionData(oldTasksQuery);
-    const todayTasks$ = collectionData(todayTasksQuery);
-    return combineLatest([oldTasks$, todayTasks$]).pipe(
-      map(([oldTasksData, todayTasksData]) => {
-        return [...new Set([...oldTasksData, ...todayTasksData])];
+    const completedTodayQuery = query(this.taskCollection,
+      where('completedAt', '>=', startOfDay),
+      where('completedAt', '<=', endOfDay),
+      where('completed', '==', true))
+    const oldTasks$ = collectionData(oldTasksQuery) as Observable<Task[]>;
+    const completedTodayTasks$ = collectionData(completedTodayQuery) as Observable<Task[]>;
+    return combineLatest([oldTasks$, completedTodayTasks$]).pipe(
+      map(([oldTasksData, completedTodayTasksData]) => {
+        return [...new Set([...oldTasksData, ...completedTodayTasksData])]
+          .sort((a, b) => (a._createdAt||Timestamp.now()).toMillis() - (b._createdAt||Timestamp.now()).toMillis());
       })
-    ) as Observable<Task[]>;
+    );
   }
 
   get(id: string) {
@@ -58,7 +59,7 @@ export class TaskService {
   }
 
   update(task: Task) {
-    const tasksDocumentReference = doc(this.firestore, `pokemon/${task.__id}`);
+    const tasksDocumentReference = doc(this.firestore, `tasks/${task.__id}`);
     task._updatedAt = Timestamp.now();
     return updateDoc(tasksDocumentReference, { ...task });
   }
@@ -68,5 +69,5 @@ export class TaskService {
     return deleteDoc(tasksDocumentReference);
   }
 
-  
+
 }

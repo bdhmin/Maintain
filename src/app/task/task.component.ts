@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
 import { Task } from 'src/app/entities/task/task.model';
+import { TaskService } from '../entities/task/task.service';
 
 @Component({
   selector: 'app-task',
@@ -19,9 +20,21 @@ export class TaskComponent implements OnInit {
     completedAt: null,
   };
 
-  constructor() { }
+  constructor(
+    private taskService: TaskService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  setCheckbox(checked: boolean) {
+    this.task.completed = checked;
+    if (checked) {
+      this.task.completedAt = Timestamp.now();
+    } else {
+      this.task.completedAt = null;
+    }
+    this.taskService.update(this.task);
   }
 
 }

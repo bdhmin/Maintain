@@ -1,4 +1,4 @@
 <div class="task">
-  <app-checkbox></app-checkbox>
-  <div>{{ task.name }}</div>
+  <app-checkbox [completed]="task.completed" (checked)="setCheckbox($event)"></app-checkbox>
+  <div [ngClass]="{'completed': task.completed}">{{ task.name }}</div>
 </div>

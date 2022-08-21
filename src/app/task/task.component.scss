@@ -7,4 +7,8 @@
   font-size: 17px;
   gap: 20px;
   color: #242C28;
+  .completed {
+    text-decoration: line-through;
+    color: #D9DCDB;
+  }
 }

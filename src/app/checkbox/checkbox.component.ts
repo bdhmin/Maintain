@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class CheckboxComponent implements OnInit {
   @Output() checked = new EventEmitter<boolean>();
 
-  @Input() checkedStatus: boolean = false;
+  @Input() completed: boolean | undefined = false;
 
   constructor() { }
 
@@ -16,9 +16,8 @@ export class CheckboxComponent implements OnInit {
   }
 
   toggleCheckbox() {
-    this.checkedStatus = !this.checkedStatus;
-    console.log(this.checkedStatus);
-    this.checked.emit(this.checkedStatus);
+    this.completed = !this.completed;
+    this.checked.emit(this.completed);
   }
 
 }
