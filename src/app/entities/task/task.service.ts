@@ -23,7 +23,6 @@ export class TaskService {
   }
 
   getTasksOfToday(): Observable<Task[]> {
-
     const oldTasksQuery = query(this.taskCollection,
       where('_createdAt', '<=', Timestamp.now()),
       where('completed', '==', false)
@@ -39,6 +38,18 @@ export class TaskService {
     return combineLatest([oldTasks$, completedTodayTasks$]).pipe(
       map(([oldTasksData, completedTodayTasksData]) => {
         return [...new Set([...oldTasksData, ...completedTodayTasksData])]
+          .sort((a, b) => (a._createdAt||Timestamp.now()).toMillis() - (b._createdAt||Timestamp.now()).toMillis());
+      })
+    );
+  }
+
+  getCompletedTasks(): Observable<Task[]> {
+    const completedTasksQuery = query(this.taskCollection,
+      where('completed', '==', true))
+    const completedTasks$ = collectionData(completedTasksQuery) as Observable<Task[]>;
+    return completedTasks$.pipe(
+      map((completedTasks) => {
+        return completedTasks
           .sort((a, b) => (a._createdAt||Timestamp.now()).toMillis() - (b._createdAt||Timestamp.now()).toMillis());
       })
     );
