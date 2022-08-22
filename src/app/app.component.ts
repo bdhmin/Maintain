@@ -30,20 +30,11 @@ export class AppComponent implements OnInit {
     // })
   }
 
-  addTask() {
-    // console.log('Creating task')
-    const task: Task = {
-      __id: '',
-      _createdAt: Timestamp.now(),
-      name: 'Leetcode',
-      completeBy: null,
-      completed: false,
-      completedAt: null,
-    }
-
-    this.taskService.create(task);
-    // TODO: Can I refetch within the service instead of manually calling?
-    this.taskList$ = this.taskService.getTasksOfToday();
+  addTask(task: Task) {
+    this.taskService.create(task).then((data) => {
+      // TODO: Can I refetch within the service instead of manually calling?
+      this.taskList$ = this.taskService.getTasksOfToday();
+    });
 
   }
 

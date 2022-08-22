@@ -1,1 +1,6 @@
-<p>add-task works!</p>
+<div>
+  <input class="add-task-input"
+    placeholder="Add task"
+    [(ngModel)]="newTask.name"
+    (keydown.enter)="createTask()">
+</div>

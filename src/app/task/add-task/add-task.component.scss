@@ -1,0 +1,13 @@
+.add-task-input {
+  border:0;
+  outline:0;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-variation-settings: 'wght' 320;
+  font-weight: 200;
+  color: #242C28;
+  font-size: 17px;
+  caret-color: #242C28;
+}
+.add-task-input:focus {
+  outline:none !important;
+}

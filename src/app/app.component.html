@@ -1,7 +1,6 @@
 <div role="main" class="main">
   <h1>{{today | date: "fullDate"}}</h1>
-  <input class="add-task-input" placeholder="Add task" type="text">
-  <!-- <div class="add-task-input" (click)="addTask()">Add Task</div> -->
+  <app-add-task (addTask)="addTask($event)"></app-add-task>
   <div class="tasklist" *ngIf="taskList$ | async as taskList">
     <app-task *ngFor="let task of taskList" [task]="task"></app-task>
   </div>

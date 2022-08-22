@@ -66,6 +66,7 @@ export class TaskService {
     task._createdAt = Timestamp.now();
     task._updatedAt = Timestamp.now();
     task.description = '';
+    task.completed = false;
     return setDoc(tasksDocumentReference, task);
   }
 
