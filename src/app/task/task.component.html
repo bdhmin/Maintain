@@ -1,4 +1,9 @@
 <div class="task">
   <app-checkbox [completed]="task.completed" (checked)="setCheckbox($event)"></app-checkbox>
-  <div [ngClass]="{'completed': task.completed}">{{ task.name }}</div>
+  <input 
+    [ngClass]="{'completed': task.completed}" 
+    [(ngModel)]="task.name"
+    onclick="this.select()"
+    (keydown.enter)="setTask()"
+    [disabled]="task.completed ? true : false">
 </div>

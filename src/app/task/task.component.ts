@@ -37,4 +37,8 @@ export class TaskComponent implements OnInit {
     this.taskService.update(this.task);
   }
 
+  setTask() {
+    this.taskService.update(this.task);
+  }
+
 }

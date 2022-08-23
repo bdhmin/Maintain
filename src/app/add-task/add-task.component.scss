@@ -1,0 +1,34 @@
+.add-task-component {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  gap: 15px;
+  .add-task-input {
+    width: 100%;
+    height: 36px;
+    border: 0;
+    border-bottom: 1px solid #D9DCDB;
+    outline:0;
+    font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-variation-settings: 'wght' 320;
+    color: #242C28;
+    font-size: 17px;
+    caret-color: #242C28;
+  }
+  .add-task-input:focus {
+    outline:none !important;
+  }
+  
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #D9DCDB;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #D9DCDB;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #D9DCDB;
+  }
+}

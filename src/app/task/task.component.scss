@@ -1,14 +1,31 @@
 .task {
-  width: 400px;
-  padding: 2px 0;
-  margin: 4px 0;
+  width: 100%;
+  padding: 9px 11px;
+  margin: 0 -11px;
   display: flex;
   justify-content: flex-start;
   font-size: 17px;
   gap: 20px;
   color: #242C28;
+  border-radius: 8px;
+  transition: 0.3s;
   .completed {
     text-decoration: line-through;
     color: #D9DCDB;
   }
+  input {
+    width: 100%;
+    border: none;
+    outline: 0;
+    background-color: rgba(0,0,0,0);
+    font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-variation-settings: 'wght' 320;
+    font-size: 17px;
+    color: #242C28;
+    caret-color: #242C28;
+  }
+}
+
+.task:hover {
+  background-color: #F6F6F6;
 }

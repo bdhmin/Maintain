@@ -1,20 +1,8 @@
 .main {
+  padding: 20px;
   .tasklist {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 2px;
   }
-}
-
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #D9DCDB;
-  opacity: 1; /* Firefox */
-}
-
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: #D9DCDB;
-}
-
-::-ms-input-placeholder { /* Microsoft Edge */
-  color: #D9DCDB;
 }
