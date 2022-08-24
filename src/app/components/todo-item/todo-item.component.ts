@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
 import { Task } from 'src/app/entities/task/task.model';
-import { TaskService } from '../entities/task/task.service';
+import { TaskService } from '../../entities/task/task.service';
 
 @Component({
-  selector: 'app-task',
-  templateUrl: './task.component.html',
-  styleUrls: ['./task.component.scss']
+  selector: 'app-todo-item',
+  templateUrl: './todo-item.component.html',
+  styleUrls: ['./todo-item.component.scss']
 })
-export class TaskComponent implements OnInit {
+export class TodoItemComponent implements OnInit {
 
   @Input() task: Task = {
     __id: '',

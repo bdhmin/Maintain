@@ -2,7 +2,7 @@
   <h1>{{today | date: "fullDate"}}</h1>
   <app-add-task (addTask)="addTask($event)"></app-add-task>
   <div class="tasklist" *ngIf="taskList$ | async as taskList">
-    <app-task *ngFor="let task of taskList" [task]="task"></app-task>
+    <app-todo-item *ngFor="let task of taskList" [task]="task"></app-todo-item>
   </div>
 </div>
 <router-outlet></router-outlet>
