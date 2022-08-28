@@ -2,7 +2,7 @@
 .checkbox-component {
   display: block;
   position: relative;
-  margin-top: 2.5px;
+  margin-top: 1.9px;
   cursor: pointer;
   font-size: 12px;
   width: 14px;
@@ -38,7 +38,7 @@
 .checkbox-component:hover input ~ .checkmark {
   background-color: #d5fdff;
   border: 1.7px solid #87E0E5;
-  transition: 0.3s ease-out;
+  transition: 0.2s ease-out;
 }
 
 /* When the checkbox is checked, add a blue background */
