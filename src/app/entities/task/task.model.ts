@@ -7,10 +7,21 @@ export interface Task {
   name: string,
   description?: string,
   // order: string,
-  completeBy: Timestamp | null,
   completed?: boolean,
-  completedAt: Timestamp | null,
+  completeBy?: Timestamp,
+  completedAt?: Timestamp,
+  isHabit: boolean,
+  completions?: Timestamp[],
 }
+
+// export interface Todo extends Task {
+
+// }
+
+// export interface Habit extends Task {
+//   completions: {}
+//   endDate?: Timestamp | null,
+// }
 
 /**
  * Design of the 'order' property

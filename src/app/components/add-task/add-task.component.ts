@@ -12,8 +12,7 @@ export class AddTaskComponent implements OnInit {
 
   newTask: Task = {
     name: '',
-    completeBy: null,
-    completedAt: null,
+    isHabit: false,
   }
 
   constructor() { }
@@ -30,8 +29,7 @@ export class AddTaskComponent implements OnInit {
   resetTaskTemplate() {
     this.newTask = {
       name: '',
-      completeBy: null,
-      completedAt: null,
+      isHabit: false,
     }
   }
 

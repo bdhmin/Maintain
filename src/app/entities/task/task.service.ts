@@ -67,6 +67,9 @@ export class TaskService {
     task._updatedAt = Timestamp.now();
     task.description = '';
     task.completed = false;
+    task.completeBy = undefined;
+    task.completedAt = undefined;
+    task.completions = [];
     return setDoc(tasksDocumentReference, task);
   }
 

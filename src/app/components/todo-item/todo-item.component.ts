@@ -15,9 +15,10 @@ export class TodoItemComponent implements OnInit {
     _createdAt: Timestamp.now(),
     name: '',
     description: '',
-    completeBy: null,
+    completeBy: undefined,
     completed: false,
-    completedAt: null,
+    completedAt: undefined,
+    isHabit: false,
   };
 
   constructor(
@@ -32,7 +33,7 @@ export class TodoItemComponent implements OnInit {
     if (checked) {
       this.task.completedAt = Timestamp.now();
     } else {
-      this.task.completedAt = null;
+      this.task.completedAt = undefined;
     }
     this.taskService.update(this.task);
   }
