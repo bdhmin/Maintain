@@ -3,6 +3,32 @@
   align-items: center;
   padding: 10px 0;
   gap: 15px;
+
+  .task-type-button {
+    position: relative;
+    border: 0;
+    width: 16px;
+    background: none;
+    padding: 0;
+    margin-right: 3px;
+    cursor: pointer;
+    transition: 0.3s;
+    img {
+      position: absolute;
+      opacity: 1;
+      top: -10px;
+      left: 0px;
+      transition: 0.3s;
+    }
+    .habit {
+      top: -12px;
+    }
+    .hidden {
+      opacity: 0;
+    }
+
+  }
+
   .add-task-input {
     width: 100%;
     height: 36px;

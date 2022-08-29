@@ -8,8 +8,8 @@ export interface Task {
   description?: string,
   // order: string,
   completed?: boolean,
-  completeBy?: Timestamp,
-  completedAt?: Timestamp,
+  completeBy?: Timestamp | null,
+  completedAt?: Timestamp | null,
   isHabit: boolean,
   completions?: Timestamp[],
 }

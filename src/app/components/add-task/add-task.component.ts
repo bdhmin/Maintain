@@ -20,8 +20,15 @@ export class AddTaskComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  taskTypeIcon() {
+    return this.newTask.isHabit ? '/assets/icons/add-habit-black.svg' : '/assets/icons/add-habit-grey.svg';
+  }
+
+  toggleIsHabit() {
+    this.newTask.isHabit = !this.newTask.isHabit;
+  }
+
   createTask() {
-    console.log(this.newTask);
     this.addTask.emit(this.newTask);
     this.resetTaskTemplate();
   }
@@ -29,7 +36,7 @@ export class AddTaskComponent implements OnInit {
   resetTaskTemplate() {
     this.newTask = {
       name: '',
-      isHabit: false,
+      isHabit: this.newTask.isHabit,
     }
   }
 

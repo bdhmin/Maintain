@@ -15,9 +15,9 @@ export class TodoItemComponent implements OnInit {
     _createdAt: Timestamp.now(),
     name: '',
     description: '',
-    completeBy: undefined,
+    completeBy: null,
     completed: false,
-    completedAt: undefined,
+    completedAt: null,
     isHabit: false,
   };
 
@@ -28,13 +28,35 @@ export class TodoItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  setCheckbox(checked: boolean) {
-    this.task.completed = checked;
-    if (checked) {
-      this.task.completedAt = Timestamp.now();
+  isCompleted() {
+    if (this.task.isHabit) {
+      const startOfDay = Timestamp.fromMillis(new Date().setHours(0, 0, 0, 0));
+      const endOfDay = Timestamp.fromMillis(new Date().setHours(24, 0, 0, 0));
+      const latestCompletion = this.getLatestCompletionDate(this.task);
+
+      // console.log('bool', !!latestCompletion && startOfDay <= latestCompletion && latestCompletion <= endOfDay)
+      return !!latestCompletion && startOfDay <= latestCompletion && latestCompletion <= endOfDay;
     } else {
-      this.task.completedAt = undefined;
+      return this.task.completed;
     }
+  }
+
+  getLatestCompletionDate(task: Task) {
+    return (task.completions??[])[(task.completions?.length??1)-1] ?? null;
+  }
+
+  setCheckbox(completed: boolean) {
+    if (this.task.isHabit) {
+      if (completed) {
+        this.task.completions?.push(Timestamp.now());
+      } else {
+        this.task.completions?.pop();
+      }
+    } else {
+      this.task.completed = completed;
+      this.task.completedAt = completed ? Timestamp.now() : null;
+    }
+    console.log('updating', this.task);
     this.taskService.update(this.task);
   }
 

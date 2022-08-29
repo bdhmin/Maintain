@@ -1,9 +1,12 @@
 <div class="task">
-  <app-checkbox [completed]="task.completed" (checked)="setCheckbox($event)"></app-checkbox>
+  <app-checkbox [completed]="isCompleted()" (checked)="setCheckbox($event)"></app-checkbox>
   <input 
-    [ngClass]="{'completed': task.completed}" 
+    [ngClass]="{'completed': isCompleted()}" 
     [(ngModel)]="task.name"
     onclick="this.select()"
     (keydown.enter)="setTask()"
     [disabled]="task.completed ? true : false">
+  <img [ngClass]="{'hidden': false}" *ngIf="task.isHabit" src="assets/icons/habit-black.svg" alt="Habit" draggable="false">
+  <!-- TODO: Toggle task between task and habit -->
+  <!-- <img [ngClass]="{'hidden': false}" *ngIf="task.isHabit" src="/assets/icons/habit-grey.svg" alt="Habit" draggable="false"> -->
 </div>

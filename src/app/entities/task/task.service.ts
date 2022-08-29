@@ -25,23 +25,32 @@ export class TaskService {
   getTasksOfToday(): Observable<Task[]> {
     const oldTasksQuery = query(this.taskCollection,
       where('_createdAt', '<=', Timestamp.now()),
-      where('completed', '==', false)
+      where('completed', '==', false),
+      where('isHabit', '==', false),
     );
     const startOfDay = Timestamp.fromMillis(new Date().setHours(0, 0, 0, 0));
     const endOfDay = Timestamp.fromMillis(new Date().setHours(24, 0, 0, 0));
     const completedTodayQuery = query(this.taskCollection,
       where('completedAt', '>=', startOfDay),
       where('completedAt', '<=', endOfDay),
-      where('completed', '==', true))
+      where('completed', '==', true),
+      where('isHabit', '==', false),
+    );
+    const habitTasksQuery = query(this.taskCollection,
+      where('isHabit', '==', true),
+    );
     const oldTasks$ = collectionData(oldTasksQuery) as Observable<Task[]>;
     const completedTodayTasks$ = collectionData(completedTodayQuery) as Observable<Task[]>;
-    return combineLatest([oldTasks$, completedTodayTasks$]).pipe(
-      map(([oldTasksData, completedTodayTasksData]) => {
-        return [...new Set([...oldTasksData, ...completedTodayTasksData])]
+    const habitTasks$ = collectionData(habitTasksQuery) as Observable<Task[]>;
+    return combineLatest([oldTasks$, completedTodayTasks$, habitTasks$]).pipe(
+      map(([oldTasksData, completedTodayTasksData, habitTasksData]) => {
+        return [...new Set([...oldTasksData, ...completedTodayTasksData, ...habitTasksData])]
           .sort((a, b) => (a._createdAt||Timestamp.now()).toMillis() - (b._createdAt||Timestamp.now()).toMillis());
       })
     );
   }
+
+
 
   getCompletedTasks(): Observable<Task[]> {
     const completedTasksQuery = query(this.taskCollection,
@@ -67,8 +76,8 @@ export class TaskService {
     task._updatedAt = Timestamp.now();
     task.description = '';
     task.completed = false;
-    task.completeBy = undefined;
-    task.completedAt = undefined;
+    task.completeBy = null;
+    task.completedAt = null;
     task.completions = [];
     return setDoc(tasksDocumentReference, task);
   }

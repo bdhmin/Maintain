@@ -14,7 +14,8 @@
     color: #D9DCDB;
   }
   input {
-    width: 100%;
+    width: 85%;
+    resize: none;
     border: none;
     outline: 0;
     background-color: rgba(0,0,0,0);
@@ -23,9 +24,21 @@
     font-size: 16px;
     color: #242C28;
     caret-color: #242C28;
+    text-overflow: ellipsis;
+  }
+  img {
+    opacity: 0;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  .hidden {
+    opacity: 0;
   }
 }
 
 .task:hover {
   background-color: #F6F6F6;
+  img {
+    opacity: 1;
+  }
 }

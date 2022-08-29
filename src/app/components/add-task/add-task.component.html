@@ -1,7 +1,10 @@
 <div class="add-task-component">
-  <img src="/assets/icons/add-task-plus-grey.svg" alt="Add Task">
+  <button class="task-type-button" (click)="toggleIsHabit()">
+    <img [ngClass]="{'hidden': this.newTask.isHabit}" src="assets/icons/add-task-grey.svg" alt="Add Task" draggable="false">
+    <img [ngClass]="{'habit': true, 'hidden': !this.newTask.isHabit}" src="assets/icons/add-habit-grey.svg" alt="Add Habit" draggable="false">
+  </button>
   <input class="add-task-input"
-    placeholder="Add task"
+    [placeholder]="newTask.isHabit ? 'Add habit' : 'Add task'"
     [(ngModel)]="newTask.name"
     (keydown.enter)="createTask()">
 </div>
